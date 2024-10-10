@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Totally Not a Rick Roll</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive;
+            background-color: #ff69b4;
+            overflow: hidden;
+            margin: 0;
+            height: 100vh;
+        }
+        h1 {
+            color: #00ff00;
+            text-shadow: 2px 2px #ff0000;
+            animation: bounce 1s infinite;
+        }
+        .button-container {
+            position: relative;
+            height: 100vh;
+        }
+        .rickroll-button {
+            position: absolute;
+            padding: 10px 20px;
+            background-color: #ffff00;
+            border: 3px solid #ff00ff;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: transform 0.3s;
+        }
+        .rickroll-button:hover {
+            transform: scale(1.1) rotate(5deg) !important;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Click a Button for a Surprise!</h1>
+    <div class="button-container" id="buttonContainer"></div>
+
+    <script>
+        function createButtons() {
+            const container = document.getElementById('buttonContainer');
+            const rickrollUrl = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+            const buttonTexts = ['Click me!', 'Press me!', 'Try me!', 'Tap here!', 'This one!'];
+
+            for (let i = 0; i < 50; i++) {
+                const button = document.createElement('a');
+                button.href = rickrollUrl;
+                button.target = '_blank';
+                button.className = 'rickroll-button';
+                button.textContent = buttonTexts[Math.floor(Math.random() * buttonTexts.length)];
+
+                const x = Math.random() * 90;
+                const y = Math.random() * 90;
+                const rotation = Math.random() * 360;
+
+                button.style.left = `${x}%`;
+                button.style.top = `${y}%`;
+                button.style.transform = `rotate(${rotation}deg)`;
+
+                container.appendChild(button);
+            }
+        }
+
+        createButtons();
+    </script>
+</body>
+</html>
